@@ -1,653 +1,777 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auto Fusion Sales | Finance | Insurance | Solar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Bebas Neue', sans-serif;
-      background: radial-gradient(circle, #000 20%, #b00020 100%);
-      color: #fff;
-      overflow-x: hidden;
-      text-transform: uppercase;
-      line-height: 1.6;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Fusion Sales | Finance | Insurance | Solar</title>
+    <link rel="icon" href="C:\Users\hp\OneDrive\Desktop\Auto Fusion\favicon_16x16.png" type="image/png">
 
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background: rgba(176, 0, 32, 0.8);
-      height: 100vh;
-      padding: 30px 20px;
-      position: fixed;
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      left: 0; /* Keep sidebar on the left */
-      top: 0;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Bebas Neue', sans-serif;
+            background: radial-gradient(circle, #000 20%, #b00020 100%);
+            color: #fff;
+            overflow-x: hidden;
+            text-transform: uppercase;
+            line-height: 1.6;
+        }
 
-    .sidebar h2 {
-      font-size: 28px;
-      letter-spacing: 2px;
-      margin-bottom: 40px;
-      text-align: center;
-    }
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: rgba(176, 0, 32, 0.8);
+            height: 100vh;
+            padding: 30px 20px;
+            position: fixed;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            left: 0;
+            top: 0;
+        }
 
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
+        .sidebar h2 {
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
 
-    .sidebar ul li {
-      margin: 20px 0;
-    }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    .sidebar ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      transition: 0.3s;
-      padding: 10px;
-      display: block;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: center;
-    }
+        .sidebar ul li {
+            margin: 20px 0;
+        }
 
-    .sidebar ul li a:hover,
-    .sidebar ul li a.active-link {
-      background: rgba(255, 0, 0, 0.3);
-    }
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 10px;
+            display: block;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+        }
 
-    /* Main Content */
-    .main-content {
-      margin-left: 270px;
-      padding: 40px;
-      padding-bottom: 100px; /* Space for footer */
-    }
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active-link {
+            background: rgba(255, 0, 0, 0.3);
+        }
 
-    .section {
-      display: none;
-      margin-bottom: 60px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-      min-height: 50vh;
-    }
+        /* Main Content */
+        .main-content {
+            margin-left: 270px;
+            padding: 40px;
+            padding-bottom: 100px; /* Increased to make space for the bottom marquee and footer */
+        }
 
-    .section.active {
-      display: block;
-    }
+        .section {
+            display: none;
+            margin-bottom: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            min-height: 50vh;
+        }
 
-    .section h1, .section h2 {
-      color: #ffd700;
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 36px;
-      letter-spacing: 1px;
-    }
+        .section.active {
+            display: block;
+        }
 
-    .section p {
-      font-family: sans-serif;
-      font-size: 16px;
-      color: #eee;
-      margin-bottom: 20px;
-      text-align: center;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      text-transform: none; /* Keep normal case for paragraphs */
-    }
+        .section h1, .section h2 {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            letter-spacing: 1px;
+        }
 
-    /* Marquee */
-    .marquee {
-      width: 100%;
-      background-color: #111;
-      padding: 10px;
-      text-align: center;
-      font-size: 18px;
-      white-space: nowrap;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
+        .section p {
+            font-family: sans-serif;
+            font-size: 16px;
+            color: #eee;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-transform: none;
+        }
 
-    .marquee img {
-      margin: 0 20px;
-      filter: grayscale(100%) brightness(150%);
-      transition: filter 0.3s ease;
-    }
-    .marquee img:hover {
-        filter: grayscale(0%) brightness(100%);
-    }
+        /* Top Marquee (Brand Logos) */
+        .top-marquee {
+            width: 100%;
+            background-color: #111;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
 
-    /* Digital Clock */
-    .clock-wrapper {
-      position: fixed;
-      bottom: 20px;
-      right: 20px; /* Position clock to the right */
-      font-size: 22px;
-      font-weight: bold;
-      color: #ffd700;
-      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
-      background: rgba(0, 0, 0, 0.8);
-      padding: 10px 20px;
-      border-radius: 10px;
-      z-index: 1000;
-      border: 1px solid #b00020;
-    }
+        .top-marquee img {
+            margin: 0 20px;
+            filter: grayscale(100%) brightness(150%);
+            transition: filter 0.3s ease;
+        }
+        .top-marquee img:hover {
+            filter: grayscale(0%) brightness(100%);
+        }
 
-    /* Sliding Product Panel */
-    .product-panel {
-      position: fixed;
-      right: -300px; /* Hidden by default */
-      top: 0; /* Align to the top */
-      width: 250px;
-      height: 100%;
-      background: rgba(255, 0, 0, 0.9);
-      padding: 20px;
-      box-shadow: -3px 0 15px rgba(255, 0, 0, 0.5);
-      transition: right 0.5s ease-in-out;
-      z-index: 1050;
-      backdrop-filter: blur(8px);
-      text-align: center;
-    }
+        /* Bottom Marquee (Car Icons) */
+        .bottom-marquee {
+            width: 100%;
+            background-color: rgba(176, 0, 32, 0.8); /* Red background */
+            padding: 10px 0; /* Adjust padding */
+            text-align: center;
+            white-space: nowrap;
+            position: fixed; /* Fixed position */
+            bottom: 60px; /* Above the footer */
+            left: 0;
+            z-index: 997; /* Below top marquee, above footer */
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+            overflow: hidden; /* Hide overflow from marquee */
+        }
 
-    .product-panel h3 {
-      text-align: center;
-      color: #fff;
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
+        .bottom-marquee .car-icon {
+            display: inline-block; /* Allows icons to sit side-by-side */
+            margin: 0 15px; /* Spacing between icons */
+            height: 35px; /* Adjust size as needed */
+            width: auto;
+            fill: #ffd700; /* Yellow color for SVG icons */
+            vertical-align: middle; /* Align icons nicely */
+            transition: transform 0.3s ease;
+        }
 
-    .product-panel ul {
-      list-style-type: none;
-      padding: 0;
-    }
+        .bottom-marquee .car-icon:hover {
+            transform: scale(1.2); /* Slightly enlarge on hover */
+        }
 
-    .product-panel ul li {
-      padding: 15px;
-      cursor: pointer;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      transition: 0.3s;
-      font-size: 18px;
-    }
 
-    .product-panel ul li:last-child {
-      border-bottom: none;
-    }
+        /* Digital Clock */
+        .clock-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            border: 1px solid #b00020;
+        }
 
-    .product-panel ul li:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 5px;
-    }
+        /* Sliding Product Panel */
+        .product-panel {
+            position: fixed;
+            right: -300px; /* Hidden by default */
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.9);
+            padding: 20px;
+            box-shadow: -3px 0 15px rgba(255, 0, 0, 0.5);
+            transition: right 0.5s ease-in-out;
+            z-index: 1050;
+            backdrop-filter: blur(8px);
+            text-align: center;
+        }
 
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      background-color: #b00020;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      margin-top: 20px;
-    }
+        .product-panel h3 {
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
 
-    .btn:hover {
-      background-color: #ff0000;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    }
+        .product-panel ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .section .btn {
-      margin-top: 40px;
-      display: block;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        .product-panel ul li {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: 0.3s;
+            font-size: 18px;
+        }
 
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #111;
-      color: #fff;
-      font-size: 14px;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      z-index: 998;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-    }
+        .product-panel ul li:last-child {
+            border-bottom: none;
+        }
 
-    /* Product Grid */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
+        .product-panel ul li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
 
-    .product-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
-      padding-bottom: 20px;
-    }
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #b00020;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
 
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
-    }
+        .btn:hover {
+            background-color: #ff0000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
 
-    .product-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-      border-bottom: 2px solid #b00020;
-    }
+        .section .btn {
+            margin-top: 40px;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .product-card h3 {
-      font-size: 24px;
-      margin: 15px 0 10px;
-      color: #ffd700;
-    }
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            color: #fff;
+            font-size: 14px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 998;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+        }
 
-    .product-card p {
-      font-family: sans-serif;
-      font-size: 15px;
-      color: #ccc;
-      padding: 0 15px;
-      margin-bottom: 15px;
-      text-transform: none;
-    }
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
 
-    .product-card .price {
-      font-size: 22px;
-      font-weight: bold;
-      color: #fff;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding-bottom: 20px;
+        }
 
-    .product-card .btn {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 0;
-    }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+        }
 
-    /* Contact Form */
-    .contact-form {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
-    }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 2px solid #b00020;
+        }
 
-    .contact-form label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
-      color: #ffd700;
-    }
+        .product-card h3 {
+            font-size: 24px;
+            margin: 15px 0 10px;
+            color: #ffd700;
+        }
 
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form textarea {
-      width: calc(100% - 20px);
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 5px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-size: 16px;
-      font-family: sans-serif;
-    }
+        .product-card p {
+            font-family: sans-serif;
+            font-size: 15px;
+            color: #ccc;
+            padding: 0 15px;
+            margin-bottom: 15px;
+            text-transform: none;
+        }
 
-    .contact-form input[type="text"]::placeholder,
-    .contact-form input[type="email"]::placeholder,
-    .contact-form textarea::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-    }
+        .product-card .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
 
-    .contact-form textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
+        .product-card .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0;
+        }
 
-    .contact-info {
-        text-align: center;
-        margin-top: 40px;
-        font-family: sans-serif;
-        color: #eee;
-    }
-    .contact-info p {
-        margin-bottom: 10px;
-        font-size: 17px;
-        text-transform: none;
-    }
-    .contact-info a {
-        color: #ffd700;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-    .contact-info a:hover {
-        color: #ff0000;
-    }
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
 
-    /* Testimonials */
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
-    }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #ffd700;
+        }
 
-    .testimonial-card {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 25px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        font-family: sans-serif;
-        text-transform: none;
-        position: relative;
-        overflow: hidden;
-    }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
 
-    .testimonial-card::before {
-        content: '“';
-        position: absolute;
-        top: 10px;
-        left: 15px;
-        font-size: 80px;
-        color: rgba(255, 215, 0, 0.2);
-        line-height: 1;
-    }
+        .contact-form input[type="text"]::placeholder,
+        .contact-form input[type="email"]::placeholder,
+        .contact-form textarea::placeholder {
+                color: rgba(255, 255, 255, 0.6);
+        }
 
-    .testimonial-card p {
-        font-style: italic;
-        color: #eee;
-        font-size: 17px;
-        text-align: left;
-        padding-left: 20px;
-        margin-bottom: 15px;
-    }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
 
-    .testimonial-card .customer-name {
-        font-weight: bold;
-        color: #ffd700;
-        text-align: right;
-        display: block;
-        font-size: 18px;
-        margin-top: 10px;
-    }
-  </style>
+        .contact-info {
+                text-align: center;
+                margin-top: 40px;
+                font-family: sans-serif;
+                color: #eee;
+        }
+        .contact-info p {
+                margin-bottom: 10px;
+                font-size: 17px;
+                text-transform: none;
+        }
+        .contact-info a {
+                color: #ffd700;
+                text-decoration: none;
+                transition: color 0.3s;
+        }
+        .contact-info a:hover {
+                color: #ff0000;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+        }
+
+        .testimonial-card {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                font-family: sans-serif;
+                text-transform: none;
+                position: relative;
+                overflow: hidden;
+        }
+
+        .testimonial-card::before {
+                content: '“';
+                position: absolute;
+                top: 10px;
+                left: 15px;
+                font-size: 80px;
+                color: rgba(255, 215, 0, 0.2);
+                line-height: 1;
+        }
+
+        .testimonial-card p {
+                font-style: italic;
+                color: #eee;
+                font-size: 17px;
+                text-align: left;
+                padding-left: 20px;
+                margin-bottom: 15px;
+        }
+
+        .testimonial-card .customer-name {
+                font-weight: bold;
+                color: #ffd700;
+                text-align: right;
+                display: block;
+                font-size: 18px;
+                margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="marquee">
-  <marquee behavior="scroll" direction="left" scrollamount="8">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Maruti_Suzuki_logo.svg" alt="Maruti Suzuki" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Hyundai_Motor_Company_logo.svg" alt="Hyundai" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Tata_logo.svg" alt="Tata Motors" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Mahindra_Rise_logo.svg" alt="Mahindra" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Kia_logo_2021.svg" alt="Kia" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Honda_logo.svg" alt="Honda" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Toyota_logo.svg" alt="Toyota" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Ford_Motor_Company_Logo.svg" alt="Ford India" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/en/2/25/MG_Motor_India_Logo.svg" alt="MG Motor India" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Renault_logo.svg" alt="Renault India" height="40">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Skoda_logo.svg" alt="Skoda India" height="40">
-  </marquee>
+<div class="top-marquee">
+    <marquee behavior="scroll" direction="left" scrollamount="8">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Maruti_Suzuki_logo.svg" alt="Maruti Suzuki" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Hyundai_Motor_Company_logo.svg" alt="Hyundai" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Tata_logo.svg" alt="Tata Motors" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Mahindra_Rise_logo.svg" alt="Mahindra" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Kia_logo_2021.svg" alt="Kia" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Honda_logo.svg" alt="Honda" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Toyota_logo.svg" alt="Toyota" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Ford_Motor_Company_Logo.svg" alt="Ford India" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/25/MG_Motor_India_Logo.svg" alt="MG Motor India" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Renault_logo.svg" alt="Renault India" height="40">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Skoda_logo.svg" alt="Skoda India" height="40">
+    </marquee>
 </div>
 
 <div class="sidebar">
-  <h2>Auto Fusion</h2>
-  <ul>
-    <li><a href="#home" class="nav-link active-link" onclick="showSection('home', this)">Home</a></li>
-    <li><a href="#" class="nav-link" onclick="togglePanel(this)">Products</a></li>
-    <li><a href="#contact" class="nav-link" onclick="showSection('contact', this)">Contact</a></li>
-    <li><a href="#about" class="nav-link" onclick="showSection('about', this)">About Us</a></li>
-    <li><a href="#customerStories" class="nav-link" onclick="showSection('customerStories', this)">Customer Stories</a></li>
-  </ul>
+    <h2>Auto Fusion</h2>
+    <ul>
+        <li><a href="#home" class="nav-link active-link" onclick="showSection('home', this)">Home</a></li>
+        <li><a href="#" class="nav-link" onclick="togglePanel(this)">Products</a></li>
+        <li><a href="#contact" class="nav-link" onclick="showSection('contact', this)">Contact</a></li>
+        <li><a href="#about" class="nav-link" onclick="showSection('about', this)">About Us</a></li>
+        <li><a href="#customerStories" class="nav-link" onclick="showSection('customerStories', this)">Customer Stories</a></li>
+    </ul>
 </div>
 
 <div class="main-content">
-  <div id="home" class="section active">
-    <h1>Welcome to Auto Fusion Sales</h1>
-    <p>Your ultimate destination for cutting-edge Indian automobiles and sustainable solar solutions. We empower your journey on the road and at home with innovation that drives India forward.</p>
-    <p>Explore our diverse collection of vehicles from leading Indian manufacturers, engineered for performance, reliability, and the future. Drive excellence, power your life, the Auto Fusion way.</p>
-    <button class="btn" onclick="showSection('automobiles', document.querySelector('.sidebar ul li a[href=\'#\'][onclick*=\'togglePanel\']')); togglePanel(document.querySelector('.sidebar ul li a[href=\'#\'][onclick*=\'togglePanel\']'));">Explore Vehicles</button>
-  </div>
-
-  <div id="automobiles" class="section">
-    <h2>Our Automobile Collection</h2>
-    <p>Discover our range of vehicles from India's leading manufacturers, from sleek city hatchbacks to rugged SUVs, each designed for unparalleled performance and comfort on Indian roads.</p>
-    <div class="product-grid">
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1621285078519-74d3d3a042e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxNcnV0aSUyMFN1enVraSUyMFN3aWZ0fGVufDB8fHx8MTcxNzAxMjAwMHww&ixlib=rb-4.0.3&q=80&w=400" alt="Maruti Suzuki Swift">
-        <h3>Maruti Suzuki Swift</h3>
-        <p>India's favorite hatchback, known for its zippy performance, fuel efficiency, and stylish design, perfect for urban commuting.</p>
-        <div class="price">₹6.50 Lakh*</div>
-        <button class="btn" onclick="alert('Enquiry for Maruti Suzuki Swift submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1629837943236-47b2df1527ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxUYXRhJTIwTmV4b258ZW58MHx8fHwxNzE3MDEyMDMxfDB8&ixlib=rb-4.0.3&q=80&w=400" alt="Tata Nexon">
-        <h3>Tata Nexon</h3>
-        <p>A leading compact SUV from Tata Motors, offering robust build quality, high safety ratings, and impressive features.</p>
-        <div class="price">₹8.00 Lakh*</div>
-        <button class="btn" onclick="alert('Enquiry for Tata Nexon submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1637731737718-d760f339f4d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxNaWhhbmRyYSUyMFhVVjcwMHxlbnwwfHx8fDE3MTcwMTIwNjJ8MA&ixlib=rb-4.0.3&q=80&w=400" alt="Mahindra XUV700">
-        <h3>Mahindra XUV700</h3>
-        <p>A feature-packed SUV with powerful engines, advanced safety features, and a commanding road presence, ideal for families.</p>
-        <div class="price">₹14.00 Lakh*</div>
-        <button class="btn" onclick="alert('Enquiry for Mahindra XUV700 submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1598132924401-443b7156942c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxIdXl1bmRheSUyMENyZXRhfGVufDB8fHx8MTcxNzAxMjA5NXww&ixlib=rb-4.0.3&q=80&w=400" alt="Hyundai Creta">
-        <h3>Hyundai Creta</h3>
-        <p>A popular mid-size SUV known for its stylish design, premium interiors, and extensive feature list, a segment leader.</p>
-        <div class="price">₹11.00 Lakh*</div>
-        <button class="btn" onclick="alert('Enquiry for Hyundai Creta submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1627993079940-058863f820c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxIb25kYSUyMENpdHl8ZW58MHx8fHwxNzE3MDEyMTQ3fDA&ixlib=rb-4.0.3&q=80&w=400" alt="Honda City">
-        <h3>Honda City</h3>
-        <p>An iconic sedan, revered for its refined engine, spacious cabin, and reliable performance, a premium choice in its segment.</p>
-        <div class="price">₹11.50 Lakh*</div>
-        <button class="btn" onclick="alert('Enquiry for Honda City submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1616886470005-09516641d8e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxLaWElMjBTZWx0b3N8ZW58MHx8fHwxNzE3MDEyMTk5fDA&ixlib=rb-4.0.3&q=80&w=400" alt="Kia Seltos">
-        <h3>Kia Seltos</h3>
-        <p>A bold and modern SUV with distinctive styling, feature-rich interiors, and strong performance, making waves in the market.</p>
-        <div class="price">₹11.00 Lakh*</div>
-        <button class="btn" onclick="alert('Enquiry for Kia Seltos submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
+    <div id="home" class="section active">
+        <h1>Welcome to Auto Fusion Sales</h1>
+        <p>Your ultimate destination for cutting-edge Indian automobiles and sustainable solar solutions. We empower your journey on the road and at home with innovation that drives India forward.</p>
+        <p>Explore our diverse collection of vehicles from leading Indian manufacturers, engineered for performance, reliability, and the future. Drive excellence, power your life, the Auto Fusion way.</p>
+        <button class="btn" onclick="showSection('automobiles', document.querySelector('.sidebar ul li a[onclick*=\'togglePanel\']')); togglePanel(document.querySelector('.sidebar ul li a[onclick*=\'togglePanel\']'));">Explore Vehicles</button>
     </div>
-    <p style="font-size:14px; text-align: right; text-transform: none;">*Prices are Ex-showroom Delhi, approximate and subject to change.</p>
-  </div>
 
-  <div id="solar" class="section">
-    <h2>Eco-Friendly Solar Solutions</h2>
-    <p>Harness the power of the sun with Auto Fusion's advanced solar products, designed for maximum efficiency and energy independence for your home or business.</p>
-    <div class="product-grid">
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x200/FFD700/000000?text=High-Efficiency+Solar+Panel" alt="High-Efficiency Solar Panel">
-        <h3>High-Efficiency Solar Panel</h3>
-        <p>Monocrystalline panels, engineered for maximum energy capture even in low light conditions, ideal for Indian climate.</p>
-        <div class="price">₹25,000 / Panel</div>
-        <button class="btn" onclick="alert('Enquiry for High-Efficiency Solar Panel submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x200/B00020/FFFFFF?text=Smart+Hybrid+Inverter" alt="Smart Hybrid Inverter">
-        <h3>Smart Hybrid Inverter</h3>
-        <p>Intelligent inverter system ensuring seamless power conversion and grid connectivity, with smart home integration capabilities.</p>
-        <div class="price">₹80,000</div>
-        <button class="btn" onclick="alert('Enquiry for Smart Hybrid Inverter submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x200/000000/FFD700?text=Residential+Battery+Storage" alt="Residential Battery Storage">
-        <h3>Residential Battery Storage</h3>
-        <p>High-capacity lithium-ion battery storage, providing reliable backup power and energy independence for your home.</p>
-        <div class="price">₹150,000</div>
-        <button class="btn" onclick="alert('Enquiry for Residential Battery Storage submitted! Our agents will contact you shortly.')">Enquire Now</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="contact" class="section">
-    <h2>Get in Touch with Auto Fusion</h2>
-    <p>Have questions or need assistance? Reach out to our dedicated team. We're here to help you power your future.</p>
-    <div class="contact-form">
-      <form onsubmit="alert('Thank you for your message! We will get back to you soon.'); return false;">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" placeholder="What is your query about?">
-
-        <label for="message">Your Message:</label>
-        <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
-
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </div>
-    <div class="contact-info">
-        <p><strong>Auto Fusion Headquarters:</strong></p>
-        <p>Main Jain Nagari Road, Opp. St. No-1, Near Vi Ministore, Abohar, Punjab, India</p>
-        <p><strong>Phone:</strong> <a href="tel:+919592373629">+91 9592373629</a></p>
-        <p><strong>Email:</strong> <a href="mailto:info@autofusion.in">info@autofusion.in</a></p>
-        <p><strong>Business Hours:</strong> Monday - Saturday, 9:00 AM - 6:00 PM (IST)</p>
-    </div>
-  </div>
-
-  <div id="about" class="section">
-    <h2>About Auto Fusion</h2>
-    <p>At Auto Fusion, we believe in pushing the boundaries of innovation to redefine mobility and energy solutions for India. Established in 2025, our vision is to seamlessly integrate high-performance Indian automobiles with sustainable solar technology, creating a future that is both thrilling and environmentally responsible for our nation.</p>
-    <p>Inspired by India's spirit of ingenuity and relentless pursuit of excellence, we offer vehicles from trusted Indian manufacturers that are not just modes of transport but extensions of your ambition. Our solar products are designed to empower homes and businesses across the country, offering energy independence and contributing to a greener Bharat.</p>
-    <p>Driven by a team of visionary engineers and passionate automotive enthusiasts, Auto Fusion is committed to delivering unparalleled quality, exceptional customer service, and a truly world-class experience. Join us on this journey as we build a more dynamic and sustainable India, one car and one solar panel at a time.</p>
-  </div>
-
-  <div id="customerStories" class="section">
-    <h2>Hear From Our Valued Customers</h2>
-    <p>Read what our amazing customers have to say about their Auto Fusion experience!</p>
-    <div class="testimonials-grid">
-        <div class="testimonial-card">
-            <p>"My new Tata Nexon is a joy to drive! It feels solid, safe, and handles Indian roads with ease. Auto Fusion made the buying process so smooth."</p>
-            <span class="customer-name">- Rajesh Kumar, Bengaluru</span>
+    <div id="automobiles" class="section">
+        <h2>Our Automobile Collection</h2>
+        <p>Discover our range of vehicles from India's leading manufacturers, from sleek city hatchbacks to rugged SUVs, each designed for unparalleled performance and comfort on Indian roads.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1621285078519-74d3d3a042e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxNcnV0aSUyMFN1enVraSUyMFN3aWZ0fGVufDB8fHx8MTcxNzAxMjAwMHww&ixlib=rb-4.0.3&q=80&w=400" alt="Maruti Suzuki Swift">
+                <h3>Maruti Suzuki Swift</h3>
+                <p>India's favorite hatchback, known for its zippy performance, fuel efficiency, and stylish design, perfect for urban commuting.</p>
+                <div class="price">₹6.50 Lakh*</div>
+                <button class="btn" onclick="alert('Enquiry for Maruti Suzuki Swift submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1629837943236-47b2df1527ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxUYXRhJTIwTmV4b258ZW58MHx8fHwxNzE3MDEyMDMxfDB8&ixlib=rb-4.0.3&q=80&w=400" alt="Tata Nexon">
+                <h3>Tata Nexon</h3>
+                <p>A leading compact SUV from Tata Motors, offering robust build quality, high safety ratings, and impressive features.</p>
+                <div class="price">₹8.00 Lakh*</div>
+                <button class="btn" onclick="alert('Enquiry for Tata Nexon submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1637731737718-d760f339f4d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHxNaWhhbmRyYSUyMFhVVjcwMHxlbnwwfHx8fDE3MTcwMTIwNjJ8MA&ixlib=rb-4.0.3&q=80&w=400" alt="Mahindra XUV700">
+                <h3>Mahindra XUV700</h3>
+                <p>A feature-packed SUV with powerful engines, advanced safety features, and a commanding road presence, ideal for families.</p>
+                <div class="price">₹14.00 Lakh*</div>
+                <button class="btn" onclick="alert('Enquiry for Mahindra XUV700 submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1598132924401-443b7156942c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxIdXl1bmRheSUyMENyZXRhfGVufDB8fHx8MTcxNzAxMjA5NXww&ixlib=rb-4.0.3&q=80&w=400" alt="Hyundai Creta">
+                <h3>Hyundai Creta</h3>
+                <p>A popular mid-size SUV known for its stylish design, premium interiors, and extensive feature list, a segment leader.</p>
+                <div class="price">₹11.00 Lakh*</div>
+                <button class="btn" onclick="alert('Enquiry for Hyundai Creta submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1627993079940-058863f820c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd7MHwxfHNlYXJjaHwxfHxIb25kYSUyMENpdHl8ZW58MHx8fHwxNzE3MDEyMTQ3fDA&ixlib=rb-4.0.3&q=80&w=400" alt="Honda City">
+                <h3>Honda City</h3>
+                <p>An iconic sedan, revered for its refined engine, spacious cabin, and reliable performance, a premium choice in its segment.</p>
+                <div class="price">₹11.50 Lakh*</div>
+                <button class="btn" onclick="alert('Enquiry for Honda City submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1616886470005-09516641d8e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU0OTd8MHwxfHNlYXJjaHwxfHxLaWElMjBTZWx0b3N8ZW58MHx8fHwxNzE3MDEyMTk5fDA&ixlib=rb-4.0.3&q=80&w=400" alt="Kia Seltos">
+                <h3>Kia Seltos</h3>
+                <p>A bold and modern SUV with distinctive styling, feature-rich interiors, and strong performance, making waves in the market.</p>
+                <div class="price">₹11.00 Lakh*</div>
+                <button class="btn" onclick="alert('Enquiry for Kia Seltos submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
         </div>
-        <div class="testimonial-card">
-            <p>"The solar solution from Auto Fusion has significantly reduced my electricity bills. It's reliable, efficient, and the team provided excellent support from consultation to installation."</p>
-            <span class="customer-name">- Priya Sharma, Mumbai</span>
-        </div>
-        <div class="testimonial-card">
-            <p>"The Mahindra XUV700 I purchased through Auto Fusion is simply magnificent. The features are top-notch, and the comfort for long drives is unmatched. Highly recommended!"</p>
-            <span class="customer-name">- Vikram Singh, Delhi</span>
-        </div>
-        <div class="testimonial-card">
-            <p>"I absolutely love my Maruti Suzuki Swift! It’s perfect for city traffic and incredibly fuel-efficient. Auto Fusion's service was prompt and professional."</p>
-            <span class="customer-name">- Anjali Desai, Ahmedabad</span>
+        <p style="font-size:14px; text-align: right; text-transform: none;">*Prices are Ex-showroom Delhi, approximate and subject to change.</p>
+    </div>
+
+    <div id="solar" class="section">
+        <h2>Eco-Friendly Solar Solutions</h2>
+        <p>Harness the power of the sun with Auto Fusion's advanced solar products, designed for maximum efficiency and energy independence for your home or business.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/FFD700/000000?text=High-Efficiency+Solar+Panel" alt="High-Efficiency Solar Panel">
+                <h3>High-Efficiency Solar Panel</h3>
+                <p>Monocrystalline panels, engineered for maximum energy capture even in low light conditions, ideal for Indian climate.</p>
+                <div class="price">₹25,000 / Panel</div>
+                <button class="btn" onclick="alert('Enquiry for High-Efficiency Solar Panel submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/B00020/FFFFFF?text=Smart+Hybrid+Inverter" alt="Smart Hybrid Inverter">
+                <h3>Smart Hybrid Inverter</h3>
+                <p>Intelligent inverter system ensuring seamless power conversion and grid connectivity, with smart home integration capabilities.</p>
+                <div class="price">₹80,000</div>
+                <button class="btn" onclick="alert('Enquiry for Smart Hybrid Inverter submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/000000/FFD700?text=Residential+Battery+Storage" alt="Residential Battery Storage">
+                <h3>Residential Battery Storage</h3>
+                <p>High-capacity lithium-ion battery storage, providing reliable backup power and energy independence for your home.</p>
+                <div class="price">₹150,000</div>
+                <button class="btn" onclick="alert('Enquiry for Residential Battery Storage submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
         </div>
     </div>
-  </div>
+
+    <div id="insurance" class="section">
+        <h2>Insurance Solutions</h2>
+        <p>Protect your assets and secure your future with Auto Fusion's comprehensive insurance offerings. From your vehicle to your personal well-being, we've got you covered.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/4CAF50/FFFFFF?text=Comprehensive+Car+Insurance" alt="Comprehensive Car Insurance">
+                <h3>Comprehensive Car Insurance</h3>
+                <p>All-inclusive coverage for your vehicle, protecting against damages, theft, natural calamities, and third-party liabilities.</p>
+                <div class="price">Starting from ₹10,000 / year</div>
+                <button class="btn" onclick="alert('Enquiry for Comprehensive Car Insurance submitted! Our agents will contact you shortly.')">Get Quote</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/2196F3/FFFFFF?text=Third-Party+Vehicle+Insurance" alt="Third-Party Vehicle Insurance">
+                <h3>Third-Party Vehicle Insurance</h3>
+                <p>Mandatory legal coverage for damages or injuries caused to a third party by your vehicle. Essential for all vehicle owners.</p>
+                <div class="price">Starting from ₹2,500 / year</div>
+                <button class="btn" onclick="alert('Enquiry for Third-Party Vehicle Insurance submitted! Our agents will contact you shortly.')">Get Quote</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/FF9800/FFFFFF?text=Personal+Accident+Cover" alt="Personal Accident Cover">
+                <h3>Personal Accident Cover</h3>
+                <p>Financial protection for you and your family in case of accidental death or disability, ensuring peace of mind.</p>
+                <div class="price">Starting from ₹1,500 / year</div>
+                <button class="btn" onclick="alert('Enquiry for Personal Accident Cover submitted! Our agents will contact you shortly.')">Get Quote</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/9C27B0/FFFFFF?text=Health+Insurance+Plans" alt="Health Insurance Plans">
+                <h3>Health Insurance Plans</h3>
+                <p>Cover medical expenses, hospitalization, and treatments. Various plans tailored to individual and family needs.</p>
+                <div class="price">As per plan</div>
+                <button class="btn" onclick="alert('Enquiry for Health Insurance Plans submitted! Our agents will contact you shortly.')">Get Quote</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="finance" class="section">
+        <h2>Financial Services</h2>
+        <p>Unlock your dreams with Auto Fusion's tailored financial solutions. Whether it's a new car or managing your investments, our expert advisors are here to guide you.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/FF5722/FFFFFF?text=New+Car+Loans" alt="New Car Loans">
+                <h3>New Car Loans</h3>
+                <p>Competitive interest rates and flexible repayment options for purchasing your brand-new dream car.</p>
+                <div class="price">Interest from 8.5% p.a.*</div>
+                <button class="btn" onclick="alert('Enquiry for New Car Loan submitted! Our agents will contact you shortly.')">Apply Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/607D8B/FFFFFF?text=Used+Car+Loans" alt="Used Car Loans">
+                <h3>Used Car Loans</h3>
+                <p>Attractive financing options for pre-owned vehicles, making quality used cars more accessible.</p>
+                <div class="price">Interest from 10.0% p.a.*</div>
+                <button class="btn" onclick="alert('Enquiry for Used Car Loan submitted! Our agents will contact you shortly.')">Apply Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/795548/FFFFFF?text=Loan+Against+Property" alt="Loan Against Property">
+                <h3>Loan Against Property</h3>
+                <p>Leverage your existing property to meet your financial needs with flexible loan terms.</p>
+                <div class="price">Customized</div>
+                <button class="btn" onclick="alert('Enquiry for Loan Against Property submitted! Our agents will contact you shortly.')">Enquire Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x200/CDDC39/000000?text=Investment+Advisory" alt="Investment Advisory">
+                <h3>Investment Advisory</h3>
+                <p>Expert guidance for mutual funds, stocks, and other investment avenues to grow your wealth.</p>
+                <div class="price">Consultation based</div>
+                <button class="btn" onclick="alert('Enquiry for Investment Advisory submitted! Our agents will contact you shortly.')">Book Consultation</button>
+            </div>
+        </div>
+        <p style="font-size:14px; text-align: right; text-transform: none;">*Interest rates are indicative and subject to credit assessment and market conditions.</p>
+    </div>
+
+
+    <div id="contact" class="section">
+        <h2>Get in Touch with Auto Fusion</h2>
+        <p>Have questions or need assistance? Reach out to our dedicated team. We're here to help you power your future.</p>
+        <div class="contact-form">
+            <form onsubmit="alert('Thank you for your message! We will get back to you soon.'); return false;">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" placeholder="What is your query about?">
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+        <div class="contact-info">
+            <p><strong>Auto Fusion Headquarters:</strong></p>
+            <p>Main Jain Nagari Road, Opp. St. No-1, Near Vi Ministore, Abohar, Punjab, India</p>
+            <p><strong>Phone:</strong> <a href="tel:+919592373629">+91 9592373629</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@autofusion.in">info@autofusion.in</a></p>
+            <p><strong>Business Hours:</strong> Monday - Saturday, 9:00 AM - 6:00 PM (IST)</p>
+        </div>
+    </div>
+
+    <div id="about" class="section">
+        <h2>About Auto Fusion</h2>
+        <p>At Auto Fusion, we believe in pushing the boundaries of innovation to redefine mobility and energy solutions for India. Established in 2025, our vision is to seamlessly integrate high-performance Indian automobiles with sustainable solar technology, creating a future that is both thrilling and environmentally responsible for our nation.</p>
+        <p>Inspired by India's spirit of ingenuity and relentless pursuit of excellence, we offer vehicles from trusted Indian manufacturers that are not just modes of transport but extensions of your ambition. Our solar products are designed to empower homes and businesses across the country, offering energy independence and contributing to a greener Bharat.</p>
+        <p>Driven by a team of visionary engineers and passionate automotive enthusiasts, Auto Fusion is committed to delivering unparalleled quality, exceptional customer service, and a truly world-class experience. Join us on this journey as we build a more dynamic and sustainable India, one car and one solar panel at a time.</p>
+    </div>
+
+    <div id="customerStories" class="section">
+        <h2>Hear From Our Valued Customers</h2>
+        <p>Read what our amazing customers have to say about their Auto Fusion experience!</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"My new Tata Nexon is a joy to drive! It feels solid, safe, and handles Indian roads with ease. Auto Fusion made the buying process so smooth."</p>
+                <span class="customer-name">- Rajesh Kumar, Bengaluru</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"The solar solution from Auto Fusion has significantly reduced my electricity bills. It's reliable, efficient, and the team provided excellent support from consultation to installation."</p>
+                <span class="customer-name">- Priya Sharma, Mumbai</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"The Mahindra XUV700 I purchased through Auto Fusion is simply magnificent. The features are top-notch, and the comfort for long drives is unmatched. Highly recommended!"</p>
+                <span class="customer-name">- Vikram Singh, Delhi</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"I absolutely love my Maruti Suzuki Swift! It’s perfect for city traffic and incredibly fuel-efficient. Auto Fusion's service was prompt and professional."</p>
+                <span class="customer-name">- Anjali Desai, Ahmedabad</span>
+            </div>
+        </div>
+    </div>
 
 </div>
 
 <div class="product-panel" id="productPanel">
-  <h3>Select Category</h3>
-  <ul>
-    <li onclick="showSection('automobiles', document.querySelector('.sidebar ul li a[href=\'#\'][onclick*=\'togglePanel\']')); togglePanel();">Automobiles</li>
-    <li onclick="showSection('solar', document.querySelector('.sidebar ul li a[href=\'#\'][onclick*=\'togglePanel\']')); togglePanel();">Solar Products</li>
-  </ul>
+    <h3>Select Category</h3>
+    <ul>
+        <li onclick="showSection('automobiles', document.querySelector('.sidebar ul li a[onclick*=\'togglePanel\']')); togglePanel();">Automobiles</li>
+        <li onclick="showSection('solar', document.querySelector('.sidebar ul li a[onclick*=\'togglePanel\']')); togglePanel();">Solar Products</li>
+        <li onclick="showSection('insurance', document.querySelector('.sidebar ul li a[onclick*=\'togglePanel\']')); togglePanel();">Insurance</li>
+        <li onclick="showSection('finance', document.querySelector('.sidebar ul li a[onclick*=\'togglePanel\']')); togglePanel();">Finance</li>
+    </ul>
+</div>
+
+<div class="bottom-marquee">
+    <marquee behavior="scroll" direction="right" scrollamount="6">
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 14h-1V7a1 1 0 00-1-1H7a1 1 0 00-1 1v7H5a1 1 0 00-1 1v2a1 1 0 001 1h14a1 1 0 001-1v-2a1 1 0 00-1-1zM7 7h10v5H7zm11 10H6v-1h12z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 11h-4a1 1 0 00-1 1v3a1 1 0 001 1h4a1 1 0 001-1v-3a1 1 0 00-1-1zM19 8h-2V6a1 1 0 00-1-1H8a1 1 0 00-1 1v2H5a1 1 0 00-1 1v7a1 1 0 001 1h2v-2a1 1 0 001-1v-3h8v3a1 1 0 001 1v2h2a1 1 0 001-1V9a1 1 0 00-1-1z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 10a1 1 0 00-1-1h-3.69l-1.42-3.13A1 1 0 0014 5H10a1 1 0 00-.89.47L7.69 9H4a1 1 0 00-1 1v7a1 1 0 001 1h16a1 1 0 001-1zM10.7 7h2.6l1 2H9.7zm10.3 10H4v-5h16.59l-.6 1.33A1 1 0 0021 13z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 11h-2V7a1 1 0 00-1-1H8a1 1 0 00-1 1v4H5a1 1 0 00-1 1v2a1 1 0 001 1h14a1 1 0 001-1v-2a1 1 0 00-1-1zM7 7h10v4H7zm11 8H6v-1h12z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 10c0-1.65-1.35-3-3-3H7c-1.65 0-3 1.35-3 3v4c0 1.65 1.35 3 3 3h10c1.65 0 3-1.35 3-3V10zM7 8h10c.55 0 1 .45 1 1v6c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 14h-1V7a1 1 0 00-1-1H7a1 1 0 00-1 1v7H5a1 1 0 00-1 1v2a1 1 0 001 1h14a1 1 0 001-1v-2a1 1 0 00-1-1zM7 7h10v5H7zm11 10H6v-1h12z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 11h-4a1 1 0 00-1 1v3a1 1 0 001 1h4a1 1 0 001-1v-3a1 1 0 00-1-1zM19 8h-2V6a1 1 0 00-1-1H8a1 1 0 00-1 1v2H5a1 1 0 00-1 1v7a1 1 0 001 1h2v-2a1 1 0 001-1v-3h8v3a1 1 0 001 1v2h2a1 1 0 001-1V9a1 1 0 00-1-1z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 10a1 1 0 00-1-1h-3.69l-1.42-3.13A1 1 0 0014 5H10a1 1 0 00-.89.47L7.69 9H4a1 1 0 00-1 1v7a1 1 0 001 1h16a1 1 0 001-1zM10.7 7h2.6l1 2H9.7zm10.3 10H4v-5h16.59l-.6 1.33A1 1 0 0021 13z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 11h-2V7a1 1 0 00-1-1H8a1 1 0 00-1 1v4H5a1 1 0 00-1 1v2a1 1 0 001 1h14a1 1 0 001-1v-2a1 1 0 00-1-1zM7 7h10v4H7zm11 8H6v-1h12z"/></svg>
+        <svg class="car-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 10c0-1.65-1.35-3-3-3H7c-1.65 0-3 1.35-3 3v4c0 1.65 1.35 3 3 3h10c1.65 0 3-1.35 3-3V10zM7 8h10c.55 0 1 .45 1 1v6c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1z"/></svg>
+    </marquee>
 </div>
 
 <div class="clock-wrapper">
-  <p id="clock"></p>
+    <p id="clock"></p>
 </div>
 
 <div class="footer">
-  <p>© 2025 Auto Fusion. All rights reserved with Auto Fusion.</p>
+    <p>© 2025 Auto Fusion. All rights reserved with Auto Fusion.</p>
 </div>
 
 <script>
-  function showSection(sectionId, clickedElement) {
-    // Hide all sections and remove active link class
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
+    function showSection(sectionId, clickedElement) {
+        // Hide all sections and remove active link class from sidebar
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
 
-    // Show the selected section
-    document.getElementById(sectionId).classList.add('active');
+        // Show the selected section
+        document.getElementById(sectionId).classList.add('active');
 
-    // Add active link class to the clicked element in the sidebar
-    if (clickedElement) {
-      clickedElement.classList.add('active-link');
-    }
-  }
-
-  function togglePanel(clickedElement) {
-    let panel = document.getElementById('productPanel');
-    const isPanelOpen = panel.style.right === '0px';
-
-    if (!isPanelOpen) {
-        panel.style.right = '0px'; // Panel slides in from the right
-        // Add active-link to the "Products" sidebar item when panel opens
+        // Add active link class to the clicked element in the sidebar
         if (clickedElement) {
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
             clickedElement.classList.add('active-link');
         }
-    } else {
-        panel.style.right = '-300px'; // Panel slides out to the right
-        // Remove active-link from "Products" when panel closes, unless another section was explicitly clicked
-        if (clickedElement && clickedElement.href === '#') { // Check if it's the product link itself
-             clickedElement.classList.remove('active-link');
+
+        // Hide the product panel if it's open AND a different sidebar link (not 'Products') was clicked
+        let productPanel = document.getElementById('productPanel');
+        if (productPanel.style.right === '0px' && clickedElement && clickedElement.innerText.toLowerCase() !== 'products') {
+            productPanel.style.right = '-300px';
         }
     }
-  }
 
-  function updateClock() {
-    let now = new Date();
-    // Options for toLocaleTimeString to show hours, minutes, seconds, and AM/PM
-    let options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
-    let timeString = now.toLocaleTimeString('en-IN', options); // Using en-IN for Indian time format
-    document.getElementById('clock').innerText = timeString;
-  }
+    function togglePanel(clickedElement) {
+        let panel = document.getElementById('productPanel');
+        const isPanelOpen = panel.style.right === '0px';
 
-  // Set initial clock and update every second
-  setInterval(updateClock, 1000);
-  updateClock();
+        // Always remove active-link from all sidebar navigation links first
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
 
-  // Initialize: ensure 'home' is active and its link is highlighted on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    showSection('home', document.querySelector('.sidebar ul li a[href="#home"]'));
-  });
+        if (!isPanelOpen) {
+            panel.style.right = '0px'; // Panel slides in from the right
+            if (clickedElement) {
+                clickedElement.classList.add('active-link'); // Set 'Products' as active
+            }
+        } else {
+            panel.style.right = '-300px'; // Panel slides out to the right
+            // The active-link from 'Products' will be removed by the first line of this function,
+            // or by showSection if a sub-category was clicked.
+        }
+    }
 
+    function updateClock() {
+        let now = new Date();
+        // Options for toLocaleTimeString to show hours, minutes, seconds, and AM/PM
+        let options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+        let timeString = now.toLocaleTimeString('en-IN', options); // Using en-IN for Indian time format
+        document.getElementById('clock').innerText = timeString;
+    }
+
+    // Set initial clock and update every second
+    setInterval(updateClock, 1000);
+    updateClock(); // Call once immediately to avoid delay on page load
+
+    // Initialize: ensure 'home' is active and its link is highlighted on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        showSection('home', document.querySelector('.sidebar ul li a[href="#home"]'));
+    });
 </script>
 
 </body>
