@@ -800,6 +800,7 @@
 </div>
 
 <script>
+    
     function showSection(sectionId, clickedElement) {
         // Hide all sections and remove active link class from sidebar
         document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -812,6 +813,12 @@
         if (clickedElement) {
             clickedElement.classList.add('active-link');
         }
+
+        // Always hide the product panel
+        let productPanel = document.getElementById('productPanel');
+        productPanel.style.right = '-300px';
+    }
+
 
         // Hide the product panel if it's open AND a different sidebar link (not 'Products') was clicked
         let productPanel = document.getElementById('productPanel');
